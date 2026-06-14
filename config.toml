@@ -1,0 +1,12 @@
+base_url = "https://swinalwaghmare.github.io"
+
+title = "Swinal Waghmare"
+description = "AWS Cloud & DevOps Engineer"
+
+compile_sass = true
+build_search_index = true
+generate_feeds = true
+
+taxonomies = [
+    { name = "tags" }
+]
