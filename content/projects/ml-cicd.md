@@ -1,6 +1,6 @@
 +++
-title = "ML CI/CD Pipeline on AWS"
-date = 2026-06-01
+title = "ML CI/CD Pipeline"
+date = "2026-06-14"
 +++
 
 ## Overview

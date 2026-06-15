@@ -1,5 +1,6 @@
 +++
 title = "About"
+date = 2026-06-14
 +++
 
 I am an AWS Cloud and DevOps Engineer with hands-on experience

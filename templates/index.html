@@ -1,18 +1,56 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% import "macros/post.html" as post_macros %}
 
-<h1>Swinal Waghmare</h1>
+{%- block translations -%}
+    {%- for translation in section.translations -%}
+    <link rel="alternate" hreflang="{{ translation.lang }}" href="{{ translation.permalink | safe }}">
+    {% endfor -%}
+{%- endblock -%}
 
-<h2>AWS Cloud & DevOps Engineer</h2>
+{%- block main -%}
+{%- filter indent -%}{%- filter indent -%}
 
-<p>
-Building scalable cloud infrastructure,
-CI/CD pipelines and production-ready systems.
-</p>
+{%- set projects_section = get_section(path="projects/_index.md", lang=lang) -%}
+{%- set blog_section = get_section(path="blog/_index.md", lang=lang) -%}
 
-<a href="/projects/">View Projects</a>
+{%- if projects_section.paginate_reversed == true -%}
+    {%- set latest_projects = projects_section.pages | reverse | slice(end=3) -%}
+{%- else -%}
+    {%- set latest_projects = projects_section.pages | slice(end=3) -%}
+{%- endif -%}
 
-<a href="/resume/">Resume</a>
+{%- if blog_section.paginate_reversed == true -%}
+    {%- set latest_posts = blog_section.pages | reverse | slice(end=3) -%}
+{%- else -%}
+    {%- set latest_posts = blog_section.pages | slice(end=3) -%}
+{%- endif -%}
 
-{% endblock %}
+{%- if section.content -%}
+<header class="content{%- if section.extra.framed %} framed{%- endif -%}">
+    {{ section.content | indent | safe }}
+
+    <div class="home-box-links">
+        <section class="home-box-group">
+            <h5 class="home-box-title">Latest Projects</h5>
+            <ul>
+                {%- for page in latest_projects %}
+                <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+                {%- endfor -%}
+            </ul>
+        </section>
+
+        <section class="home-box-group">
+            <h5 class="home-box-title">Latest Blog Posts</h5>
+            <ul>
+                {%- for page in latest_posts %}
+                <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+                {%- endfor -%}
+            </ul>
+        </section>
+    </div>
+</header>
+{%- endif -%}
+
+{%- endfilter -%}{%- endfilter -%}
+{%- endblock -%}
