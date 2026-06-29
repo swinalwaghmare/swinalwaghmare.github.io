@@ -50,7 +50,7 @@ Instead of using Terraform or clicking around in the AWS console, you declare yo
 
 Here is how the pieces fit together:
 
-![Alt](/static/images/blog/crossplane/crossplane-architecture.png)
+![Alt](crossplane-architecture.png)
 
 Every step happens inside Kubernetes. You never leave kubectl.
 
@@ -100,7 +100,7 @@ Say you want a custom resource called `App`. Whenever a developer creates an `Ap
 
 Without Crossplane, you'd write a controller for this — and controllers are notoriously tricky to get right. With Crossplane, you instead write a small function whose only job is to **transform an input** (like an `App` resource) into the actual Kubernetes and cloud resources you want. Crossplane's engine handles the reconciliation — creating, updating, and deleting infrastructure as needed.
 
-![Alt](/static/images/blog/crossplane/crossplane-composition.png)
+![Alt](crossplane-composition.png)
 
 
 You focus on the *logic*. Crossplane handles the *machinery*.
@@ -132,7 +132,7 @@ If Composition is like a Kubernetes Deployment — always running, always watchi
 
 Think of an Operation like a Kubernetes Job. It runs, does its work, and finishes. Here's what a password rotation pipeline might look like:
 
-![Alt](/static/images/blog/crossplane/crossplane-operation.png)
+![Alt](crossplane-operation.png)
 
 
 There are three types:
